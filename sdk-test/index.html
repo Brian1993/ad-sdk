@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #ad-overlay.overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, .35)
+    }
+
+
+    #ad-overlay .ad-contenct {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 60%;
+      height: 40%;
+      transform: translate(-50%, -50%);
+    }
+
+    #ad-overlay .ad-contenct .ad {
+      width: 100%;
+      height: 100%;
+    }
+
+    img {
+      width: 100%;
+      object-position: center;
+
+    }
+    .remove-btn {
+      position: absolute;
+      top: -7%;
+      right: 0;
+      width: 3%;
+      height: 5%;
+      background: red;
+    }
+
+    .remove-btn-01 {
+      width: 15%;
+      height: 100%;
+      background: #000;
+      transform: translate(250%, 0%) rotate(45deg);
+    }
+
+    .remove-btn-02 {
+      width: 15%;
+      height: 100%;
+      background: #000;
+      transform: translate(250%, -98%) rotate(-45deg)
+    }
+  </style>
+</head>
+<body>
+  <div id='content'>
+    <h1>11111111
+      </h1>    
+    <!-- <div id="ad-overlay" class="overlay fade">
+
+      <div class="ad-contenct">
+        <div class="remove-btn">
+          <div class="remove-btn-01"></div>
+          <div class="remove-btn-02"></div>
+        </div>
+        <div class="ad">
+            <img  src='https://user-images.githubusercontent.com/1284568/58097483-137d3280-7c0a-11e9-978c-8cadc5d76419.png' />
+        </div>
+       
+        <iframe class="ad" src="https://www.youtube.com/embed/dZ_Ab1XxxKg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></! 
+      </div>
+    </div> -->
+
+
+  </div>
+<script> 
+  function adInit () {
+    AD.init({
+      clientId: '123',
+      onAdLoaded: onAdLoaded,
+      onAdFailed: onAdFailed,
+      adType: 'VIDEO'
+    })
+  }
+
+  function onAdLoaded (res) {
+    console.log('onAdLoaded', res)
+  }
+
+  function onAdFailed (error) {
+    
+  }
+
+  (function (d, s, id) {
+    var js, 
+        fjs = d.getElementsByTagName(s)[0]
+
+    if (d.getElementById(id)) { return }
+    js = d.createElement(s)
+    js.id = id
+    js.src = 'http://localhost:8080/sdk/bundle.js'
+    js.onload = adInit
+    fjs.parentNode.insertBefore(js, fjs)
+  })(document, 'script', 'ad-sdk')
+
+
+
+</script>
+</body>
+</html>

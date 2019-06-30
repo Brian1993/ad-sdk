@@ -8,27 +8,24 @@ module.exports = function authenticateUser (clientId) {
 }
 
 function authenticate (clientId) {
-  try {
-    console.log('mode:', mode)
-    if (mode === 'dev') return { isSucces: true }
+  if (mode === 'dev') return { isSucces: true }
+  let authResult
 
-    const authResult = sendAuthSevice({ clientId })
-  
-    return authResult
-  } catch (e) {
-    
-  }
+  sendAuthSevice({ clientId })
+  .then(result => authResult = { ...result })
+  .catch(e => authResult = { isSucces: false, errMsg: e.message })
+  return authResult
 }
 
-async function sendAuthSevice (data) {
+function sendAuthSevice (data) {
   // We don't have a api to authenticate registered user yet, just in case 
   const authURL = `${adServiceApi}/auth`
 
-  const res = await fetch(authURL, {
+  return fetch(authURL, {
     method: 'POST',
     mode: 'cors',
     headers: {
-        'Content-Type': 'application/json',
+      'Content-Type': 'application/json',
     },
     redirect: 'follow',
     body: data
@@ -37,5 +34,4 @@ async function sendAuthSevice (data) {
   .catch(e => {
     return e
   })
-  return res
 }

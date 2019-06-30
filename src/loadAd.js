@@ -1,35 +1,40 @@
 const { adServiceApi } = require('./config')
+const { _ } = require('./utils')
 
-module.exports = function loadAd (onAdLoaded, onAdFailed, isAutoloaded) {
-  try {
-    const isApiExist = !!adServiceApi
-    if (!isApiExist)  console.error('AD api does not exist, please notify adminstrator')
+module.exports = function loadAd (onAdLoaded, onAdFailed, adType, isAutoloaded) {
+  const isApiExist = !!adServiceApi
+  if (!isApiExist)  console.error('AD api does not exist, please notify adminstrator')
+
+  const adURL = `${adServiceApi}/ads`
+
+  fetch(adURL)
+  .then(res => res.json())
+  .then(data => {
+    const isRenderAd = checkIfRenderAd(data, adType)
+    if (!isRenderAd && _.isFunction(onAdFailed)) 
+      return onAdFailed({ errMsg: 'No add has been loaded or ad type is other' })
+    // TODO: create a function => showAd, let user can simplely use the method to show AD 
+    if (!isAutoloaded && _.isFunction(onAdLoaded)) return onAdLoaded()
   
-    const adURL = `${adServiceApi}/ads`
-    const res = load(adURL)
+  })
+  .catch(e => {
+    console.error('error occured at loading ad:', e)
+    if (_.isFunction(onAdFailed)) onAdFailed({ errMsg: e.message})
+  })
+}
 
-    // checkRespone(res)
-    // if (isAutoloaded) 
-    if (onAdLoaded) onAdLoaded()
-
-    
-
-  } catch (e) {
-    if (onAdFailed) onAdFailed(e)
-    console.error('error occured at loading ads:', e)
-  }
+function checkIfRenderAd (data, adType) {
+  const { success, type } = data
+  if (!success) return false
+  if (type !== _.toUpper(adType)) return false
+  return true
 }
 
 
-function load (adURL) {
-  try {
-    const res = fetch(adURL).then(res => res.json())
-    return res
-  } catch (e) {
-    throw e
-  }
+function renderAd () {
+
 }
 
-// function checkRespone (res) {
-//   if()
-// }
+function showAd (overlay) {
+  document.body.insertBefore(overlay, document.body.firstChild);
+}

@@ -8,7 +8,7 @@ const random = (min, max) => Math.floor(Math.random() * (max - min)) + min
 const genAdId = () => `${+new Date()}-${random(0, 1000)}`
 
 
-app.use('/static', express.static('dist'))
+app.use('/sdk', express.static('dist'))
 app.use(cors())
 // get random ad from mock data
 const getAd = (type = '') => {
