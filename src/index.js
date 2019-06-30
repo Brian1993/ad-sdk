@@ -1,4 +1,4 @@
-const { init } = require('./init')
+const init = require('./init')
 
 const AD = {
   init
