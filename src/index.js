@@ -5,3 +5,4 @@ const AD = {
 }
 
 window.AD = AD
+
