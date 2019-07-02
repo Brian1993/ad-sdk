@@ -55,8 +55,8 @@ AD-SDK 提供三個事件供使用者監聽
         AD.init({
           clientId: 'Client123',
           onAdLoaded,
-    	  onAdFailed,
-    	  onAdImpression
+          onAdFailed,
+          onAdImpression
         })
       }
     
