@@ -89,8 +89,8 @@ AD-SDK 提供三個事件供使用者監聽
 物件 `error`
 
     function onAdFailed (error) {
-    	console.log(error.errMsg)
-    	// ...do what you want after ad fail loaded
+      console.log(error.errMsg)
+      // ...do what you want after ad fail loaded
     }
 
 ### onAdImpression
@@ -98,7 +98,7 @@ AD-SDK 提供三個事件供使用者監聽
 將 `onAdLoaded` 加入 `AD.Init()` 後，當廣告在使用者畫面超過一秒後才關閉，則會呼叫此 function
 
     function onAdImpression () {
-    	// ...do what you want after user close AD and AD stays on screen over 1 second
+      // ...do what you want after user close AD and AD stays on screen over 1 second
     }
 
 > 調整廣吿自動顯示
