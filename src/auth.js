@@ -1,4 +1,4 @@
-const { adServiceApi, mode, ERROR_CODE } = require('./config')
+const { adServiceApi, ERROR_CODE } = require('./config')
 
 /**
  * call auth serice to authenticate user is valid
@@ -12,7 +12,8 @@ module.exports = function authenticateUser (clientId) {
 }
 
 function authenticate (clientId) {
-  if (mode === 'dev') return { isSucces: true }
+  // Because of currently on Dev mode, so always return true
+  return { isSucces: true }
   let authResult
 
   sendAuthSevice({ clientId })

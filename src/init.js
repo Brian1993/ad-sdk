@@ -13,5 +13,5 @@ module.exports = function init (userConfig) {
 
   const authResult = authenticateUser(clientId)
   if (!authResult.isSucces) return console.error(`AD SDK error occured: ${authResult.errMsg}`) 
-  loadAd(onAdLoaded, onAdFailed, adType, isAutoloaded)
+  loadAd(onAdLoaded, onAdFailed, onAdImpression, adType, isAutoloaded)
 }

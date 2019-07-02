@@ -9,7 +9,7 @@ const generateAdNode = require('./ad')
  * @param {string} adType          AD type speicfy by user
  * @param {boolean} isAutoloaded   is auto load AD speicfy by user
  */
-module.exports = function loadAd (onAdLoaded, onAdFailed, adType, isAutoloaded) {
+module.exports = function loadAd (onAdLoaded, onAdFailed, onAdImpression, adType, isAutoloaded) {
   const isApiExist = !!adServiceApi
   if (!isApiExist)  console.error(ERROR_CODE['001'])
   const adURL = `${adServiceApi}/ads`
@@ -30,7 +30,7 @@ module.exports = function loadAd (onAdLoaded, onAdFailed, adType, isAutoloaded) 
         : console.error(ERROR_CODE['003'])
     }
 
-    renderAd(generateAdNode(data))
+    renderAd(generateAdNode(data), onAdImpression, data)
   })
   .catch(e => {
     console.error('error occured at loading ad:', e)
@@ -54,18 +54,53 @@ function checkIfRenderAd (data, adType) {
  * Render AD
  * @param {object} adNode html dom node of ad
  */
-function renderAd (adNode) {
+function renderAd (adNode, onAdImpression, adData) {
   const adContainer = document.createElement('div')
   adContainer.innerHTML = adNode
   const body = document.getElementsByTagName('body')[0]
   body.appendChild(adContainer)
-  window.closeAd = closeAd
+  window.closeAd = () => closeAd(onAdImpression, adData)
+
+  setOnAdImpressionBeginTime()
 }
 
 /**
- * Close AD
+ * Close AD and check is onAdImpression
+ * @param {func}    onAdImpression  onAdFailed Listener passed by user
+ * @param {object}  adData          Ad data
  */
-function closeAd () {
+function closeAd (onAdImpression, adData) {
   const ad = document.getElementById('ad-overlay')
   ad.remove()
+  
+  const { impression_url } = adData
+  const isOnAdImpression = checkIfOnAdImpression()
+  if (isOnAdImpression) {
+    const hsaOnAdImpression = _.isFunction(onAdImpression)
+    fetch(impression_url, {
+      method: 'POST'
+    })
+    .then(res => {
+      if (hsaOnAdImpression) onAdImpression(res)
+    })
+    .catch(e => {
+      if (hsaOnAdImpression) onAdImpression(e)
+    })
+  }
+}
+
+/**
+ * record ad loaded time at sessionStorage
+ */
+function setOnAdImpressionBeginTime () {
+  window.sessionStorage.setItem('onAdImpressionBeginTime', new Date().getTime())
+}
+
+/**
+ * check if OnAdImpression event is 
+ */
+function checkIfOnAdImpression () {
+  const beginTime = window.sessionStorage.getItem('onAdImpressionBeginTime')
+  const endTime = new Date().getTime()
+  return (endTime - beginTime) / 1000 > 1
 }

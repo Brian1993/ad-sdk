@@ -26,16 +26,15 @@
   function adInit () {
     AD.init({
       clientId: '123',
-      // onAdLoaded,
       onAdFailed,
-      isAutoloaded: false
+      onAdImpression
     })
   }
 
-  // function  onAdLoaded (showAD)  {3
-  //   // showAD()
-  // }
-
+  function onAdImpression (res) {
+    console.log('onAdImpression')
+    console.log(res)
+  }
   function onAdFailed (error) {
     console.log('Failed!')
     console.log(error)
