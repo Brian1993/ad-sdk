@@ -55,8 +55,8 @@ AD-SDK 提供三個事件供使用者監聽
         AD.init({
           clientId: 'Client123',
           onAdLoaded,
-    			onAdFailed,
-    			onAdImpression
+          onAdFailed,
+          onAdImpression
         })
       }
     
@@ -64,23 +64,23 @@ AD-SDK 提供三個事件供使用者監聽
         console.log('廣告載入成功！')
       }
     
-    	function onAdFailed (error) {
-    	  console.log('廣告載入失敗！')
-    	  console.log(error)
-    	}
+      function onAdFailed (error) {
+        console.log('廣告載入失敗！')
+        console.log(error)
+      }
     
-    	function onAdImpression () {
-    		console.log('訪客已經看過廣告！')
-    	}
+      function onAdImpression () {
+        console.log('訪客已經看過廣告！')
+      }
     </script>
 
 ### onAdLoaded
 
 將 `onAdLoaded` 加入 `AD.Init()` 後，當廣告資料載入成功後便會呼叫此 function
 
-      function onAdLoaded (showAd) {
-        // ...do what you want after ad loaded 
-      }
+    function onAdLoaded () {
+      // ...do what you want after ad loaded 
+    }
 
 ### onAdFailed
 
@@ -89,8 +89,8 @@ AD-SDK 提供三個事件供使用者監聽
 物件 `error`
 
     function onAdFailed (error) {
-    	console.log(error.errMsg)
-    	// ...do what you want after ad fail loaded
+      console.log(error.errMsg)
+      // ...do what you want after ad fail loaded
     }
 
 ### onAdImpression
@@ -98,7 +98,7 @@ AD-SDK 提供三個事件供使用者監聽
 將 `onAdLoaded` 加入 `AD.Init()` 後，當廣告在使用者畫面超過一秒後才關閉，則會呼叫此 function
 
     function onAdImpression () {
-    	// ...do what you want after user close AD and AD stays on screen over 1 second
+      // ...do what you want after user close AD and AD stays on screen over 1 second
     }
 
 > 調整廣吿自動顯示
@@ -113,7 +113,7 @@ AD-SDK 提供三個事件供使用者監聽
       AD.init({
         clientId: 'Client123',
         isAutoLoaded: false,
-        onAdOloaded
+        onAdLoaded
       })
     }
     
