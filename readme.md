@@ -2,9 +2,11 @@
 > 測試方法
 
 拉下 repo 後，cd 進入repo目錄，輸入 `docker-compose up` 即可到 localhost:3050 進行測試
+
 在看之前我想先懺悔我沒做好的地方：
 
   1. 沒有特別寫給 SPA 的 API
+  2. 沒有寫 test
   2. onAdImpression 的定義我一直沒有看懂，所以我用自己的想法去定義，並且在呼叫 impression_url 的時候會出現 cors 的問題
 
 以上，謝謝你的 review
