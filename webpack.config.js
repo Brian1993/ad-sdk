@@ -8,7 +8,7 @@ module.exports = (env, arg) => {
     entry: './src/index.js',
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: 'bundle.js'
+      filename: 'sdk.js'
     },
     module: {
       rules: [

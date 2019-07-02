@@ -31,6 +31,7 @@ module.exports = function loadAd (onAdLoaded, onAdFailed, onAdImpression, adType
     }
 
     renderAd(generateAdNode(data), onAdImpression, data)
+    if (_.isFunction(onAdLoaded)) onAdLoaded()
   })
   .catch(e => {
     console.error('error occured at loading ad:', e)
