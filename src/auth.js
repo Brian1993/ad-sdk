@@ -1,5 +1,10 @@
 const { adServiceApi, mode } = require('./config')
 
+
+/**
+ * call auth serice to authenticate user is valid
+ * @param {string} clientd clientId provided by user
+ */
 module.exports = function authenticateUser (clientId) {
   const authResult = clientId 
     ? authenticate(clientId) 

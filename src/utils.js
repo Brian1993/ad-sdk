@@ -1,5 +1,5 @@
 function isFunction(functionToCheck) {
-  return functionToCheck && typeof(a) === 'function'
+  return functionToCheck && typeof(functionToCheck) === 'function'
 }
 
 function toUpper(str) {

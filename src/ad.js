@@ -1,6 +1,6 @@
-function generateAdNode (adData) {
+
+module.exports = function generateAdNode (adData) {
   insertStyle()
-  console.table(adData)
   const { 
     type,
     title,
@@ -11,27 +11,34 @@ function generateAdNode (adData) {
   } = adData
 
   const adTemplate = `
-    <div id="ad-overlay" class="overlay">
+    <div id="ad-overlay" class="overlay" onclick="closeAd()">
       <div class="ad-contenct">
-        <div class="remove-btn">
-          <div class="remove-btn-01"></div>
-          <div class="remove-btn-02"></div>
+        <div class="remove-btn-wrapper" onclick="closeAd()">
+          <div class="remove-btn remove-btn-01"></div>
+          <div class="remove-btn remove-btn-02"></div>
         </div>
         <div class="ad">
         ${
           type === 'VIDEO'
-            ? `
-                <div class="imgWrapper">
-                  <a class="play-icon" target="_blank" href=${video_url}>
+            ? `<div class="imgWrapper">
+                  <a 
+                    class="play-icon" 
+                    target="_blank" 
+                    href=${video_url} 
+                    onclick="javascript:(function(event) { event.stopPropagation(); })(event)"
+                  >
                     <div class="play-icon-arrow"></div>
                   </a>
                   <h2 class='video-title'>${title}</h2>
                   <a target="_blank" href=${video_url}>
                     <img src=${image} />
                   </a>
-                </div>`
+              </div>`
             : ` <div class="imgWrapper">
-                  <a target="_blank" href=${url}>
+                  <a 
+                    target="_blank" href=${url} 
+                    onclick="javascript:(function(event) { event.stopPropagation(); })(event)"
+                  >
                     <img  src=${image} />
                   </a>
                 </div>
@@ -66,7 +73,7 @@ function insertStyle () {
     top: 50%;
     left: 50%;
     width: 70%;
-    height: 50%;
+    height: 80%;
     transform: translate(-50%, -50%);
   }
 
@@ -80,7 +87,7 @@ function insertStyle () {
     height: 100%;
     object-fit: cover;
   }
-  #ad-overlay .remove-btn {
+  #ad-overlay .remove-btn-wrapper {
     position: absolute;
     top: -7%;
     right: 0;
@@ -89,18 +96,19 @@ function insertStyle () {
     background: red;
   }
 
-  #ad-overlay .remove-btn-01 {
+  #ad-overlay .remove-btn {
     width: 15%;
     height: 100%;
+  }
+
+  #ad-overlay .remove-btn-01 {
     background: #000;
     transform: translate(250%, 0%) rotate(45deg);
   }
 
   #ad-overlay .remove-btn-02 {
-    width: 15%;
-    height: 100%;
     background: #000;
-    transform: translate(250%, -98%) rotate(-45deg)
+    transform: translate(250%, -98%) rotate(-45deg);
   }
 
   #ad-overlay h2 {
@@ -159,4 +167,3 @@ function insertStyle () {
   ref.parentNode.insertBefore(style, ref)
 }
 
-module.exports = generateAdNode

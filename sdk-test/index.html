@@ -8,24 +8,9 @@
 </head>
 <body>
   <div>
-   
+      <h1>TEST</h1>
   </div>
 <script> 
-  function adInit () {
-    AD.init({
-      clientId: '123',
-      onAdLoaded: onAdLoaded,
-      onAdFailed: onAdFailed,
-    })
-  }
-
-  function onAdLoaded (res) {
-    console.log('onAdLoaded', res)
-  }
-
-  function onAdFailed (error) {
-    
-  }
 
   (function (d, s, id) {
     var js, 
@@ -38,6 +23,26 @@
     js.onload = adInit
     fjs.parentNode.insertBefore(js, fjs)
   })(document, 'script', 'ad-sdk')
+
+
+  function  onAdLoaded (res)  {
+    res()
+  }
+
+  function onAdFailed (error) {
+    console.log('Failed!')
+    console.log(error)
+  }
+
+  function adInit () {
+    AD.init({
+      clientId: '123',
+      onAdLoaded,
+      onAdFailed,
+      isAutoloaded: false
+    })
+  }
+
 
 
 
