@@ -113,7 +113,7 @@ AD-SDK 提供三個事件供使用者監聽
       AD.init({
         clientId: 'Client123',
         isAutoLoaded: false,
-        onAdOloaded
+        onAdLoaded
       })
     }
     
