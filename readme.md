@@ -65,8 +65,8 @@ AD-SDK 提供三個事件供使用者監聽
       }
     
       function onAdFailed (error) {
-    	console.log('廣告載入失敗！')
-    	console.log(error)
+        console.log('廣告載入失敗！')
+        console.log(error)
       }
     
       function onAdImpression () {
