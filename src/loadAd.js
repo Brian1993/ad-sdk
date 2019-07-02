@@ -1,4 +1,4 @@
-const { adServiceApi } = require('./config')
+const { adServiceApi, ERROR_CODE } = require('./config')
 const _ = require('./utils')
 const generateAdNode = require('./ad')
 
@@ -11,7 +11,7 @@ const generateAdNode = require('./ad')
  */
 module.exports = function loadAd (onAdLoaded, onAdFailed, adType, isAutoloaded) {
   const isApiExist = !!adServiceApi
-  if (!isApiExist)  console.error('AD api does not exist, please notify adminstrator')
+  if (!isApiExist)  console.error(ERROR_CODE['001'])
   const adURL = `${adServiceApi}/ads`
 
   fetch(adURL)
@@ -20,14 +20,14 @@ module.exports = function loadAd (onAdLoaded, onAdFailed, adType, isAutoloaded) 
     const isRenderAd = checkIfRenderAd(data, adType)
     if (!isRenderAd) {
       return _.isFunction(onAdFailed)
-        ? onAdFailed({ errMsg: 'No add has been loaded or ad type is other' })
-        : console.error('No add has been loaded or ad type is other')
+        ? onAdFailed({ errMsg: ERROR_CODE['002'] })
+        : console.error(ERROR_CODE['002'])
     }
     
     if (!isAutoloaded) {
       return _.isFunction(onAdLoaded)
         ? onAdLoaded(() => renderAd(generateAdNode(data)))
-        : console.error('You have to specify "onAdLoaded" listener in order to control the timing to show ad')
+        : console.error(ERROR_CODE['003'])
     }
 
     renderAd(generateAdNode(data))
@@ -41,7 +41,7 @@ module.exports = function loadAd (onAdLoaded, onAdFailed, adType, isAutoloaded) 
 /**
  * Check if Advertisment data is valid and ad type is what user specified
  * @param {object} data   Advertisment data
- * @param {string} adType ad type speicfy by user 
+ * @param {string} adType ad type speicfy by user
  */
 function checkIfRenderAd (data, adType) {
   const { success, type } = data

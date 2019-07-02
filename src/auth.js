@@ -1,5 +1,4 @@
-const { adServiceApi, mode } = require('./config')
-
+const { adServiceApi, mode, ERROR_CODE } = require('./config')
 
 /**
  * call auth serice to authenticate user is valid
@@ -8,7 +7,7 @@ const { adServiceApi, mode } = require('./config')
 module.exports = function authenticateUser (clientId) {
   const authResult = clientId 
     ? authenticate(clientId) 
-    : { isSucces: false, errMsg: 'Please provide client ID' }
+    : { isSucces: false, errMsg: ERROR_CODE['004'] }
   return authResult
 }
 

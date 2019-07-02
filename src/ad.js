@@ -1,4 +1,8 @@
-
+/**
+ * generate Html node for ad 
+ * @param  {object} adData     data of AD
+ * @return {string} adTemplate
+ */
 module.exports = function generateAdNode (adData) {
   insertStyle()
   const { 
@@ -54,8 +58,12 @@ module.exports = function generateAdNode (adData) {
   return adTemplate
 }
 
+/**
+ * TODO: check if style already exist, prevent overwirte the original style
+ * add class through insert style tag inside head tag
+ */
 function insertStyle () {
-  var style = document.createElement('style');
+  var style = document.createElement('style')
   style.innerHTML =`
   #ad-overlay.overlay {
     position: fixed;
@@ -93,7 +101,6 @@ function insertStyle () {
     right: 0;
     width: 3%;
     height: 5%;
-    background: red;
   }
 
   #ad-overlay .remove-btn {

@@ -11,8 +11,7 @@ function toUpper(str) {
 }
 
 
-
 module.exports = {
   isFunction,
-  toUpper
+  toUpper,
 }

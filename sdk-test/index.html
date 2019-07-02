@@ -11,40 +11,35 @@
       <h1>TEST</h1>
   </div>
 <script> 
-
   (function (d, s, id) {
     var js, 
-        fjs = d.getElementsByTagName(s)[0]
+        script = d.getElementsByTagName(s)[0]
 
     if (d.getElementById(id)) { return }
     js = d.createElement(s)
     js.id = id
     js.src = 'http://localhost:8080/sdk/bundle.js'
     js.onload = adInit
-    fjs.parentNode.insertBefore(js, fjs)
+    script.parentNode.insertBefore(js, script)
   })(document, 'script', 'ad-sdk')
-
-
-  function  onAdLoaded (res)  {
-    res()
-  }
-
-  function onAdFailed (error) {
-    console.log('Failed!')
-    console.log(error)
-  }
 
   function adInit () {
     AD.init({
       clientId: '123',
-      onAdLoaded,
+      // onAdLoaded,
       onAdFailed,
       isAutoloaded: false
     })
   }
 
+  // function  onAdLoaded (showAD)  {3
+  //   // showAD()
+  // }
 
-
+  function onAdFailed (error) {
+    console.log('Failed!')
+    console.log(error)
+  }
 
 </script>
 </body>
