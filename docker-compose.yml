@@ -1,0 +1,15 @@
+version: '3'
+services:
+  sdk-api:
+    build:
+      context: ./
+    ports:
+     - '8080:8080'
+  client:
+    build:
+      context: ./sdk-test
+    ports:
+      - '3050:3050'
+    volumes:  
+      - /web/node_modules
+      - ./sdk-test:/web

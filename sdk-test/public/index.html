@@ -8,7 +8,8 @@
 </head>
 <body>
   <div>
-      <h1>TEST</h1>
+    <h1>T221asdddmdsdsadT</h1>
+    <h1>T221asc8 csdsadT</h1>
   </div>
 <script> 
   (function (d, s, id) {
@@ -18,7 +19,7 @@
     if (d.getElementById(id)) { return }
     js = d.createElement(s)
     js.id = id
-    js.src = 'http://localhost:8080/sdk/bundle.js'
+    js.src = 'http://localhost:8080/sdk/sdk.js'
     js.onload = adInit
     script.parentNode.insertBefore(js, script)
   })(document, 'script', 'ad-sdk')
@@ -26,20 +27,24 @@
   function adInit () {
     AD.init({
       clientId: '123',
-      onAdFailed,
-      onAdImpression
+      onAdLoaded
     })
   }
 
+  function onAdLoaded (showAd) {
+    console.log('onAdLoaded')
+  }
   function onAdImpression (res) {
-    console.log('onAdImpression')
-    console.log(res)
-  }
-  function onAdFailed (error) {
-    console.log('Failed!')
-    console.log(error)
-  }
+  console.log('onAdImpression')
+  console.log(res)
+}
+function onAdFailed (error) {
+  console.log('Failed!')
+  console.log(error)
+}
+
 
 </script>
 </body>
 </html>
+
