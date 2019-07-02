@@ -55,8 +55,8 @@ AD-SDK 提供三個事件供使用者監聽
         AD.init({
           clientId: 'Client123',
           onAdLoaded,
-    			onAdFailed,
-    			onAdImpression
+    	  onAdFailed,
+    	  onAdImpression
         })
       }
     
@@ -64,14 +64,14 @@ AD-SDK 提供三個事件供使用者監聽
         console.log('廣告載入成功！')
       }
     
-    	function onAdFailed (error) {
-    	  console.log('廣告載入失敗！')
-    	  console.log(error)
-    	}
+      function onAdFailed (error) {
+    	console.log('廣告載入失敗！')
+    	console.log(error)
+      }
     
-    	function onAdImpression () {
-    		console.log('訪客已經看過廣告！')
-    	}
+      function onAdImpression () {
+        console.log('訪客已經看過廣告！')
+      }
     </script>
 
 ### onAdLoaded
