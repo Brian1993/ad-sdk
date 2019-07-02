@@ -109,18 +109,18 @@ AD-SDK 提供三個事件供使用者監聽
 
 注意： 只有在 `isAutoLoaded` 為 `false` 時，onAdLoaded 才會得到 `showAd` 方法
 
-      function adInit () {
-        AD.init({
-          clientId: 'Client123',
-    			isAutoLoaded: false,
-    			onAdOloaded
-        })
-      }
+    function adInit () {
+      AD.init({
+        clientId: 'Client123',
+        isAutoLoaded: false,
+        onAdOloaded
+      })
+    }
     
-    	function onAdOloaded (showAd) {
-    		// ...do what you want after ad loaded and show AD
-    		showAD()
-    	}
+    function onAdOloaded (showAd) {
+      // ...do what you want after ad loaded and show AD
+      showAD()
+    }
 
 > 設定廣告為特定種類
 
@@ -128,9 +128,9 @@ AD-SDK 提供三個事件供使用者監聽
 
 在 `AD.Init()`  加入 `adType` 參數，即可設定想要廣告類型, 若載入廣告非設定類型，則不顯示
 
-      function adInit () {
-        AD.init({
-          clientId: 'Client123',
-    			adType: 'VIDEO'
-        })
-      }
+    function adInit () {
+      AD.init({
+        clientId: 'Client123',
+        adType: 'VIDEO'
+      })
+    }
