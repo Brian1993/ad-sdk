@@ -21,25 +21,27 @@
 
 注意： `AD.Init` 方法只接受物件
 
-    <script> 
-      (function (d, s, id) {
-        var js, 
-            script = d.getElementsByTagName(s)[0]
-    
-        if (d.getElementById(id)) { return }
-        js = d.createElement(s)
-        js.id = id
-        js.src = 'http://localhost:8080/sdk/sdk.js'
-        js.onload = adInit
-        script.parentNode.insertBefore(js, script)
-      })(document, 'script', 'ad-sdk')
-    
-      function adInit () {
-        AD.init({
-          clientId: 'Client123'
-        })
-      }
-    </script>
+```html
+<script> 
+  (function (d, s, id) {
+    var js, 
+        script = d.getElementsByTagName(s)[0]
+
+    if (d.getElementById(id)) { return }
+    js = d.createElement(s)
+    js.id = id
+    js.src = 'http://localhost:8080/sdk/sdk.js'
+    js.onload = adInit
+    script.parentNode.insertBefore(js, script)
+  })(document, 'script', 'ad-sdk')
+
+  function adInit () {
+    AD.init({
+      clientId: 'Client123'
+    })
+  }
+</script>
+```
 
 > 加入事件監聽
 
@@ -50,43 +52,43 @@ AD-SDK 提供三個事件供使用者監聽
 3. `onAdImpression` : 當廣告在畫面中，超過1秒才關閉，視為者用者曾經看過此廣告
 
 將你想監聽的事件傳入 `AD.Init()` 裡
+```html
+<script> 
+  (function (d, s, id) {
+    var js, 
+        script = d.getElementsByTagName(s)[0]
 
-    <script> 
-      (function (d, s, id) {
-        var js, 
-            script = d.getElementsByTagName(s)[0]
-    
-        if (d.getElementById(id)) { return }
-        js = d.createElement(s)
-        js.id = id
-        js.src = 'http://localhost:8080/sdk/bundle.js'
-        js.onload = adInit
-        script.parentNode.insertBefore(js, script)
-      })(document, 'script', 'ad-sdk')
-    
-      function adInit () {
-        AD.init({
-          clientId: 'Client123',
-          onAdLoaded,
-          onAdFailed,
-          onAdImpression
-        })
-      }
-    
-      function onAdLoaded () {
-        console.log('廣告載入成功！')
-      }
-    
-      function onAdFailed (error) {
-        console.log('廣告載入失敗！')
-        console.log(error)
-      }
-    
-      function onAdImpression () {
-        console.log('訪客已經看過廣告！')
-      }
-    </script>
+    if (d.getElementById(id)) { return }
+    js = d.createElement(s)
+    js.id = id
+    js.src = 'http://localhost:8080/sdk/bundle.js'
+    js.onload = adInit
+    script.parentNode.insertBefore(js, script)
+  })(document, 'script', 'ad-sdk')
 
+  function adInit () {
+    AD.init({
+      clientId: 'Client123',
+      onAdLoaded,
+      onAdFailed,
+      onAdImpression
+    })
+  }
+
+  function onAdLoaded () {
+    console.log('廣告載入成功！')
+  }
+
+  function onAdFailed (error) {
+    console.log('廣告載入失敗！')
+    console.log(error)
+  }
+
+  function onAdImpression () {
+    console.log('訪客已經看過廣告！')
+  }
+</script>
+```
 ### onAdLoaded
 
 將 `onAdLoaded` 加入 `AD.Init()` 後，當廣告資料載入成功後便會呼叫此 function
@@ -101,18 +103,21 @@ AD-SDK 提供三個事件供使用者監聽
 
 物件 `error`
 
-    function onAdFailed (error) {
-      console.log(error.errMsg)
-      // ...do what you want after ad fail loaded
-    }
-
+```js
+function onAdFailed (error) {
+  console.log(error.errMsg)
+  // ...do what you want after ad fail loaded
+}
+```
 ### onAdImpression
 
 將 `onAdLoaded` 加入 `AD.Init()` 後，當廣告在使用者畫面超過一秒後才關閉，則會呼叫此 function
 
-    function onAdImpression () {
-      // ...do what you want after user close AD and AD stays on screen over 1 second
-    }
+```js
+function onAdImpression () {
+  // ...do what you want after user close AD and AD stays on screen over 1 second
+}
+```
 
 > 調整廣吿自動顯示
 
@@ -122,28 +127,31 @@ AD-SDK 提供三個事件供使用者監聽
 
 注意： 只有在 `isAutoLoaded` 為 `false` 時，onAdLoaded 才會得到 `showAd` 方法
 
-    function adInit () {
-      AD.init({
-        clientId: 'Client123',
-        isAutoLoaded: false,
-        onAdLoaded
-      })
-    }
-    
-    function onAdOloaded (showAd) {
-      // ...do what you want after ad loaded and show AD
-      showAD()
-    }
+```js
+function adInit () {
+  AD.init({
+    clientId: 'Client123',
+    isAutoLoaded: false,
+    onAdLoaded
+  })
+}
+
+function onAdOloaded (showAd) {
+  // ...do what you want after ad loaded and show AD
+  showAD()
+}
+```
 
 > 設定廣告為特定種類
 
 目前有提供 `VIDEO` , `BANNER` 選項，預設為任意廣告
 
 在 `AD.Init()`  加入 `adType` 參數，即可設定想要廣告類型, 若載入廣告非設定類型，則不顯示
-
-    function adInit () {
-      AD.init({
-        clientId: 'Client123',
-        adType: 'VIDEO'
-      })
-    }
+```js
+function adInit () {
+  AD.init({
+    clientId: 'Client123',
+    adType: 'VIDEO'
+  })
+}
+```
