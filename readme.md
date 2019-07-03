@@ -90,7 +90,7 @@ AD-SDK 提供三個事件供使用者監聽
 </script>
 ```
 
-### onAdLoaded
+**1. onAdLoaded**
 
 將 `onAdLoaded` 加入 `AD.Init()` 後，當廣告資料載入成功後便會呼叫此 function
 
@@ -100,7 +100,7 @@ function onAdLoaded () {
 }
 ```
 
-### onAdFailed
+**2. onAdFailed**
 
 將 `onAdLoaded` 加入 `AD.Init()` 後，當廣告資料載入失敗便會呼叫此 function，並提供錯誤訊息
 
@@ -112,7 +112,7 @@ function onAdFailed (error) {
   // ...do what you want after ad fail loaded
 }
 ```
-### onAdImpression
+**3. onAdImpression**
 
 將 `onAdLoaded` 加入 `AD.Init()` 後，當廣告在使用者畫面超過一秒後才關閉，則會呼叫此 function
 
