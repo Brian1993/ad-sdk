@@ -3,9 +3,8 @@
  * @param  {object} adData     data of AD
  * @return {string} adTemplate
  */
-module.exports = function generateAdNode (adData) {
-  insertStyle()
-  const { 
+module.exports = function generateAdNode(adData) {
+  const {
     type,
     title,
     description,
@@ -13,6 +12,7 @@ module.exports = function generateAdNode (adData) {
     video_url,
     url
   } = adData
+  insertStyle(type)
 
   const adTemplate = `
     <div id="ad-overlay" class="overlay" onclick="closeAd()">
@@ -47,11 +47,12 @@ module.exports = function generateAdNode (adData) {
                   </a>
                 </div>
                 <div class='ad-desc'>
-                  <h2>${title}</h2>
-                  <h3>${description}</h3>
-                </div>
-            `
-        }
+                  <div class='ad-title-container'>
+                    <h1>${title}</h1>
+                    <h3>${description}</h3>
+                  </div>
+                </div>`
+          }
         </div>
     </div>
   </div>`
@@ -61,10 +62,11 @@ module.exports = function generateAdNode (adData) {
 /**
  * TODO: check if style already exist, prevent overwirte the original style
  * add class through insert style tag inside head tag
+ * @param {string} type ad type 
  */
-function insertStyle () {
+function insertStyle(type) {
   var style = document.createElement('style')
-  style.innerHTML =`
+  style.innerHTML = `
   #ad-overlay.overlay {
     position: fixed;
     top: 0;
@@ -86,8 +88,25 @@ function insertStyle () {
   }
 
   #ad-overlay .ad-contenct .ad {
-    width: 100%;
-    height: 100%;
+   ${
+     type === 'VIDEO'
+      ? `width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;`
+      : `position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 80%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      transform: translate(-50%, -50%);   
+      `
+     }
   }
 
   #ad-overlay img {
@@ -95,32 +114,37 @@ function insertStyle () {
     height: 100%;
     object-fit: cover;
   }
+
+
   #ad-overlay .remove-btn-wrapper {
     position: absolute;
-    top: -7%;
+    top: 3%;
     right: 0;
     width: 3%;
     height: 5%;
   }
 
   #ad-overlay .remove-btn {
+    background-color: #f7f7f7;
     width: 15%;
     height: 100%;
   }
 
   #ad-overlay .remove-btn-01 {
-    background: #000;
     transform: translate(250%, 0%) rotate(45deg);
   }
 
   #ad-overlay .remove-btn-02 {
-    background: #000;
     transform: translate(250%, -98%) rotate(-45deg);
   }
 
-  #ad-overlay h2 {
+  #ad-overlay .ad-title-container {
+    margin: auto;
+  }
+
+  #ad-overlay h1 {
     color: #333;
-    margin: 0;
+    margin: 0 0 .5em 0;
   }
 
   #ad-overlay h3 {
@@ -128,18 +152,23 @@ function insertStyle () {
   }
 
   #ad-overlay .ad-desc {
-    background: #999;
-    height: 20%;
+    background: #f5f5f5;
+    width:100%;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   #ad-overlay .imgWrapper {
     width: 100%;
     height: 80%;
+    position: relative;
   }
 
   #ad-overlay .video-title {
     font-size: 2rem;
-    position: fixed;
+    position: absolute;
     top: 2%;
     left: 2%;
     color: white;
