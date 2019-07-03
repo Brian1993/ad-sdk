@@ -3,7 +3,7 @@
 
 拉下 repo 後，cd 進入repo目錄，輸入 `docker-compose up` 即可到 localhost:3050 進行測試
 
-在看之前我想先懺悔我沒做好的地方：
+在看之前我想先說明我沒做好的地方：
 
   1. 沒有特別寫給 SPA 的 API
   2. 沒有寫 test
