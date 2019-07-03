@@ -116,7 +116,7 @@ AD-SDK 提供三個事件供使用者監聽
 
 > 調整廣吿自動顯示
 
-在 `AD.Init()`  加入 `isAutoLoaded` 改為 false，即可成功在廣告資料載入後停止自動顯示，若要控制廣告顯示時機，若無此參數預設為 `true`
+在 `AD.Init()`  加入 `isAutoLoaded` 改為 false，即可成功在廣告資料載入後停止自動顯示，若無此參數預設為 `true`，若想要控制廣告顯示時機，
 
 可以透過 `onAdOloaded` 事件取得 `showAd` 方法，決定何時顯示廣告
 
