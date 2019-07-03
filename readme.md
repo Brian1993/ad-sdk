@@ -1,7 +1,8 @@
 ## 給電獺看此repo的前輩
 > 測試方法
 
-拉下 repo 後，cd 進入repo目錄，輸入 `docker-compose up` 即可到 localhost:3050 進行測試
+拉下 repo 後，cd 進入repo目錄，輸入 `docker-compose up` 即可到 localhost:3050 進行測試，廣告為隨機顯示，
+所以可能會沒有，請多refresh幾次就好了
 
 在看之前我想先說明我沒做好的地方：
 
