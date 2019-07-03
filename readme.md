@@ -89,13 +89,16 @@ AD-SDK 提供三個事件供使用者監聽
   }
 </script>
 ```
+
 ### onAdLoaded
 
 將 `onAdLoaded` 加入 `AD.Init()` 後，當廣告資料載入成功後便會呼叫此 function
 
-    function onAdLoaded () {
-      // ...do what you want after ad loaded 
-    }
+```js
+function onAdLoaded () {
+  // ...do what you want after ad loaded 
+}
+```
 
 ### onAdFailed
 
